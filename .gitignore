@@ -21,7 +21,6 @@
 build/
 Debug/
 Release/
-x64/
 out/
 cmake-build-*/
 
@@ -32,13 +31,18 @@ cmake_install.cmake
 Makefile
 
 # Служебные файлы IDE
-.vs/
 .vscode/
 .idea/
 *.user
 *.suo
+
+# Visual Studio
+.vs/
+x64/
 *.sln
-*.vcxproj*
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
 
 # ===== Java =====
 # Скомпилированные классы
