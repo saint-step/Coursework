@@ -1,6 +1,6 @@
 #pragma once
 
-#include "inventory.h"
+#include "inventory.hpp"
 #include <string>
 
 namespace dnd {
