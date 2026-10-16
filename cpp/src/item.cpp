@@ -1,4 +1,4 @@
-#include "item.h"
+#include "item.hpp"
 #include <iostream>
 
 namespace dnd {
@@ -6,12 +6,12 @@ namespace dnd {
     Item::Item(std::string_view name, Type type, int damage, int heal)
         : m_name(name), m_type(type), m_damage(damage), m_heal(heal)
     {
-        std::cout << "Ñîçäàí ïðåäìåò: " << m_name << "\n";
+        std::cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚: " << m_name << "\n";
     }
 
     Item::Item() : m_name("Empty"), m_type(Type::eWeapon), m_damage(0), m_heal(0)
     {
-        std::cout << "Ñîçäàí ïóñòîé ïðåäìåò\n";
+        std::cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½ Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚\n";
     }
 
     Item::~Item() {}
@@ -22,6 +22,6 @@ namespace dnd {
     Item::Type Item::GetType() const { return m_type; }
 
     void Item::Print() const {
-        std::cout << "Ïðåäìåò: " << m_name << " (Óðîí: " << m_damage << ", Ëå÷åíèå: " << m_heal << ")\n";
+        std::cout << "ÐŸÑ€ÐµÐ´Ð¼ÐµÑ‚: " << m_name << " (Ð£Ñ€Ð¾Ð½: " << m_damage << ", Ð›ÐµÑ‡ÐµÐ½Ð¸Ðµ: " << m_heal << ")\n";
     }
 }

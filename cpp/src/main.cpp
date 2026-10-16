@@ -1,60 +1,88 @@
 #include <windows.h>
 #include <iostream>
-#include "character.h"
-#include "item.h"
+#include <memory>
+#include "character.hpp"
+#include "item.hpp"
 
 using namespace dnd;
 
 int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-    std::cout << "    —ÓÁ‰‡ÌËÂ ÔÂ‰ÏÂÚÓ‚ (¿„Â„‡ˆËˇ)    \n";
-    Item* sword = new Item("—Ú‡Î¸ÌÓÈ ÏÂ˜", Item::Type::eWeapon, 15, 0);
-    Item* potion = new Item("«ÂÎ¸Â ÎÂ˜ÂÌËˇ", Item::Type::ePotion, 0, 20);
 
-    Item* items_massiv = new Item[2];
-    items_massiv[0] = Item(" ËÌÊ‡Î", Item::Type::eWeapon, 8, 0);
-    items_massiv[1] = Item("¡ÓÎ¸¯ÓÂ ÁÂÎ¸Â", Item::Type::ePotion, 0, 30);
+    std::cout << "    –°–æ–∑–¥–∞–Ω–∏–µ –ø—Ä–µ–¥–º–µ—Ç–æ–≤ (–ê–≥—Ä–µ–≥–∞—Ü–∏—è)\n";
+    std::unique_ptr<Item> sword = std::make_unique<Item>("–°—Ç–∞–ª—å–Ω–æ–π –º–µ—á", Item::Type::eWeapon, 15, 0);
+    std::unique_ptr<Item> potion = std::make_unique<Item>("–ó–µ–ª—å–µ –ª–µ—á–µ–Ω–∏—è", Item::Type::ePotion, 0, 20);
 
+    std::cout << "\n    –î–∏–Ω–∞–º–∏—á–µ—Å–∫–∏–π –º–∞—Å—Å–∏–≤ –ø—Ä–µ–¥–º–µ—Ç–æ–≤\n";
+    std::unique_ptr<Item[]> items_massiv = std::make_unique<Item[]>(2);
+    items_massiv[0] = Item("–ö–∏–Ω–∂–∞–ª", Item::Type::eWeapon, 8, 0);
+    items_massiv[1] = Item("–ë–æ–ª—å—à–æ–µ –∑–µ–ª—å–µ", Item::Type::ePotion, 0, 30);
     for (int i = 0; i < 2; ++i) {
         items_massiv[i].Print();
     }
-    delete[] items_massiv;
 
-    std::cout << "\n    —ÓÁ‰‡ÌËÂ ÔÂÒÓÌ‡Ê‡ ( ÓÏÔÓÁËˆËˇ)    \n";
+    std::cout << "\n    –°–æ–∑–¥–∞–Ω–∏–µ –ø–µ—Ä—Å–æ–Ω–∞–∂–∞ (–ö–æ–º–ø–æ–∑–∏—Ü–∏—è)\n";
     {
-        Character hero("—Ë —ÚÂÔ‡Ì", 100);
+        Character hero("–°–∏—Ä –°—Ç–µ–ø–∞–Ω", 100);
 
-        std::cout << "\n    œÓ‚ÂÍ‡ Ô‡‚ËÎ    \n";
+        std::cout << "\n    –ü—Ä–æ–≤–µ—Ä–∫–∞ –ø—Ä–∞–≤–∏–ª\n";
         hero.Attack(*potion);
         hero.Heal(*potion);
 
-        std::cout << "\n    œÓ‰·Ó ÔÂ‰ÏÂÚÓ‚    \n";
+        std::cout << "\n    –ü–æ–¥–±–æ—Ä –ø—Ä–µ–¥–º–µ—Ç–æ–≤\n";
         hero.PickUpItem(*sword);
         hero.PickUpItem(*potion);
 
-        // œÓ‚ÂÍ‡ ‚ÏÂÒÚËÏÓÒÚË ËÌ‚ÂÌÚ‡ˇ
-        Item spear(" ÓÔ¸∏", Item::Type::eWeapon);
-        Item knife("ÕÓÊ", Item::Type::eWeapon);
-        Item axe("“ÓÔÓ", Item::Type::eWeapon);
-        Item saber("—‡·Îˇ", Item::Type::eWeapon);
+        Item spear("–ö–æ–ø—å—ë", Item::Type::eWeapon, 10, 0);
+        Item knife("–ù–æ–∂", Item::Type::eWeapon, 5, 0);
+        Item axe("–¢–æ–ø–æ—Ä", Item::Type::eWeapon, 12, 0);
+        Item saber("–°–∞–±–ª—è", Item::Type::eWeapon, 8, 0);
         hero.PickUpItem(spear);
         hero.PickUpItem(knife);
         hero.PickUpItem(axe);
-        hero.PickUpItem(saber); // ¬ÓÁÌËÍ‡ÂÚ Ó¯Ë·Í‡
+        hero.PickUpItem(saber);
 
-        std::cout << "\n    —Ú‡ÚÛÒ ÔÂÒÓÌ‡Ê‡    \n";
+        std::cout << "\n    –°—Ç–∞—Ç—É—Å –ø–µ—Ä—Å–æ–Ω–∞–∂–∞\n";
         hero.PrintStatus();
 
-        std::cout << "\n    ¬˚ıÓ‰ ËÁ ·ÎÓÍ‡ (ÛÌË˜ÚÓÊÂÌËÂ œÂÒÓÌ‡Ê‡ Ë »Ì‚ÂÌÚ‡ˇ)    \n";
+        std::cout << "\n    –í—ã—Ö–æ–¥ –∏–∑ –±–ª–æ–∫–∞ (—É–Ω–∏—á—Ç–æ–∂–µ–Ω–∏–µ –ü–µ—Ä—Å–æ–Ω–∞–∂–∞ –∏ –ò–Ω–≤–µ–Ω—Ç–∞—Ä—è)\n";
     }
 
-    std::cout << "\n    œÓ‚ÂÍ‡ ¿„Â„‡ˆËË: œÂ‰ÏÂÚ˚ ÌÂ Û‰‡ÎÂÌ˚   \n";
-    std::cout << "ÃÂ˜ ÒÛ˘ÂÒÚ‚ÛÂÚ: " << sword->GetName() << "\n";
-    std::cout << "«ÂÎ¸Â ÒÛ˘ÂÒÚ‚ÛÂÚ: " << potion->GetName() << "\n";
+    std::cout << "\n    –ü—Ä–æ–≤–µ—Ä–∫–∞ –ê–≥—Ä–µ–≥–∞—Ü–∏–∏: –ü—Ä–µ–¥–º–µ—Ç—ã –Ω–µ —É–¥–∞–ª–µ–Ω—ã   \n";
+    std::cout << "–ú–µ—á —Å—É—â–µ—Å—Ç–≤—É–µ—Ç: " << sword->GetName() << "\n";
+    std::cout << "–ó–µ–ª—å–µ —Å—É—â–µ—Å—Ç–≤—É–µ—Ç: " << potion->GetName() << "\n";
 
-    delete sword;
-    delete potion;
+
+    std::cout << "\n    –î–µ–º–æ–Ω—Å—Ç—Ä–∞—Ü–∏—è shared_ptr\n";
+    std::shared_ptr<Item> sharedSword = std::make_shared<Item>("–û–±—â–∏–π –º–µ—á", Item::Type::eWeapon, 20, 0);
+    std::cout << "–í–ª–∞–¥–µ–ª—å—Ü–µ–≤: " << sharedSword.use_count() << "\n";
+
+    {
+        std::shared_ptr<Item> copy = sharedSword;
+        std::cout << "–í–ª–∞–¥–µ–ª—å—Ü–µ–≤ –ø–æ—Å–ª–µ –∫–æ–ø–∏–∏: " << sharedSword.use_count() << "\n";
+    }
+
+    std::cout << "–í–ª–∞–¥–µ–ª—å—Ü–µ–≤ –ø–æ—Å–ª–µ –≤—ã—Ö–æ–¥–∞ –∏–∑ –±–ª–æ–∫–∞: " << sharedSword.use_count() << "\n";
+
+    std::cout << "\n    –î–µ–º–æ–Ω—Å—Ç—Ä–∞—Ü–∏—è weak_ptr\n";
+    std::weak_ptr<Item> weakSword = sharedSword;
+
+    if (std::shared_ptr<Item> locked = weakSword.lock()) {
+        std::cout << "weak_ptr: –æ–±—ä–µ–∫—Ç –∂–∏–≤, –∏–º—è = " << locked->GetName() << "\n";
+    }
+    else {
+        std::cout << "weak_ptr: –æ–±—ä–µ–∫—Ç —É–Ω–∏—á—Ç–æ–∂–µ–Ω\n";
+    }
+
+    sharedSword.reset();
+
+    if (std::shared_ptr<Item> locked = weakSword.lock()) {
+        std::cout << "weak_ptr: –æ–±—ä–µ–∫—Ç –∂–∏–≤, –∏–º—è = " << locked->GetName() << "\n";
+    }
+    else {
+        std::cout << "weak_ptr: –æ–±—ä–µ–∫—Ç —É–Ω–∏—á—Ç–æ–∂–µ–Ω\n";
+    }
 
     return 0;
 }
