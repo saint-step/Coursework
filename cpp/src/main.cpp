@@ -10,78 +10,78 @@ int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
 
-    std::cout << "    Создание предметов (Агрегация)\n";
-    std::unique_ptr<Item> sword = std::make_unique<Item>("Стальной меч", Item::Type::eWeapon, 15, 0);
-    std::unique_ptr<Item> potion = std::make_unique<Item>("Зелье лечения", Item::Type::ePotion, 0, 20);
+    std::cout << "    РЎРѕР·РґР°РЅРёРµ РїСЂРµРґРјРµС‚РѕРІ (РђРіСЂРµРіР°С†РёСЏ)\n";
+    std::unique_ptr<Item> sword = std::make_unique<Item>("РЎС‚Р°Р»СЊРЅРѕР№ РјРµС‡", Item::Type::eWeapon, 15, 0);
+    std::unique_ptr<Item> potion = std::make_unique<Item>("Р—РµР»СЊРµ Р»РµС‡РµРЅРёСЏ", Item::Type::ePotion, 0, 20);
 
-    std::cout << "\n    Динамический массив предметов\n";
+    std::cout << "\n    Р”РёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ РїСЂРµРґРјРµС‚РѕРІ\n";
     std::unique_ptr<Item[]> items_massiv = std::make_unique<Item[]>(2);
-    items_massiv[0] = Item("Кинжал", Item::Type::eWeapon, 8, 0);
-    items_massiv[1] = Item("Большое зелье", Item::Type::ePotion, 0, 30);
+    items_massiv[0] = Item("РљРёРЅР¶Р°Р»", Item::Type::eWeapon, 8, 0);
+    items_massiv[1] = Item("Р‘РѕР»СЊС€РѕРµ Р·РµР»СЊРµ", Item::Type::ePotion, 0, 30);
     for (int i = 0; i < 2; ++i) {
         items_massiv[i].Print();
     }
 
-    std::cout << "\n    Создание персонажа (Композиция)\n";
+    std::cout << "\n    РЎРѕР·РґР°РЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р° (РљРѕРјРїРѕР·РёС†РёСЏ)\n";
     {
-        Character hero("Сир Степан", 100);
+        Character hero("РЎРёСЂ РЎС‚РµРїР°РЅ", 100);
 
-        std::cout << "\n    Проверка правил\n";
+        std::cout << "\n    РџСЂРѕРІРµСЂРєР° РїСЂР°РІРёР»\n";
         hero.Attack(*potion);
         hero.Heal(*potion);
 
-        std::cout << "\n    Подбор предметов\n";
+        std::cout << "\n    РџРѕРґР±РѕСЂ РїСЂРµРґРјРµС‚РѕРІ\n";
         hero.PickUpItem(*sword);
         hero.PickUpItem(*potion);
 
-        Item spear("Копьё", Item::Type::eWeapon, 10, 0);
-        Item knife("Нож", Item::Type::eWeapon, 5, 0);
-        Item axe("Топор", Item::Type::eWeapon, 12, 0);
-        Item saber("Сабля", Item::Type::eWeapon, 8, 0);
+        Item spear("РљРѕРїСЊС‘", Item::Type::eWeapon, 10, 0);
+        Item knife("РќРѕР¶", Item::Type::eWeapon, 5, 0);
+        Item axe("РўРѕРїРѕСЂ", Item::Type::eWeapon, 12, 0);
+        Item saber("РЎР°Р±Р»СЏ", Item::Type::eWeapon, 8, 0);
         hero.PickUpItem(spear);
         hero.PickUpItem(knife);
         hero.PickUpItem(axe);
         hero.PickUpItem(saber);
 
-        std::cout << "\n    Статус персонажа\n";
+        std::cout << "\n    РЎС‚Р°С‚СѓСЃ РїРµСЂСЃРѕРЅР°Р¶Р°\n";
         hero.PrintStatus();
 
-        std::cout << "\n    Выход из блока (уничтожение Персонажа и Инвентаря)\n";
+        std::cout << "\n    Р’С‹С…РѕРґ РёР· Р±Р»РѕРєР° (СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ РџРµСЂСЃРѕРЅР°Р¶Р° Рё РРЅРІРµРЅС‚Р°СЂСЏ)\n";
     }
 
-    std::cout << "\n    Проверка Агрегации: Предметы не удалены   \n";
-    std::cout << "Меч существует: " << sword->GetName() << "\n";
-    std::cout << "Зелье существует: " << potion->GetName() << "\n";
+    std::cout << "\n    РџСЂРѕРІРµСЂРєР° РђРіСЂРµРіР°С†РёРё: РџСЂРµРґРјРµС‚С‹ РЅРµ СѓРґР°Р»РµРЅС‹   \n";
+    std::cout << "РњРµС‡ СЃСѓС‰РµСЃС‚РІСѓРµС‚: " << sword->GetName() << "\n";
+    std::cout << "Р—РµР»СЊРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚: " << potion->GetName() << "\n";
 
 
-    std::cout << "\n    Демонстрация shared_ptr\n";
-    std::shared_ptr<Item> sharedSword = std::make_shared<Item>("Общий меч", Item::Type::eWeapon, 20, 0);
-    std::cout << "Владельцев: " << sharedSword.use_count() << "\n";
+    std::cout << "\n    Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ shared_ptr\n";
+    std::shared_ptr<Item> sharedSword = std::make_shared<Item>("РћР±С‰РёР№ РјРµС‡", Item::Type::eWeapon, 20, 0);
+    std::cout << "Р’Р»Р°РґРµР»СЊС†РµРІ: " << sharedSword.use_count() << "\n";
 
     {
         std::shared_ptr<Item> copy = sharedSword;
-        std::cout << "Владельцев после копии: " << sharedSword.use_count() << "\n";
+        std::cout << "Р’Р»Р°РґРµР»СЊС†РµРІ РїРѕСЃР»Рµ РєРѕРїРёРё: " << sharedSword.use_count() << "\n";
     }
 
-    std::cout << "Владельцев после выхода из блока: " << sharedSword.use_count() << "\n";
+    std::cout << "Р’Р»Р°РґРµР»СЊС†РµРІ РїРѕСЃР»Рµ РІС‹С…РѕРґР° РёР· Р±Р»РѕРєР°: " << sharedSword.use_count() << "\n";
 
-    std::cout << "\n    Демонстрация weak_ptr\n";
+    std::cout << "\n    Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ weak_ptr\n";
     std::weak_ptr<Item> weakSword = sharedSword;
 
     if (std::shared_ptr<Item> locked = weakSword.lock()) {
-        std::cout << "weak_ptr: объект жив, имя = " << locked->GetName() << "\n";
+        std::cout << "weak_ptr: РѕР±СЉРµРєС‚ Р¶РёРІ, РёРјСЏ = " << locked->GetName() << "\n";
     }
     else {
-        std::cout << "weak_ptr: объект уничтожен\n";
+        std::cout << "weak_ptr: РѕР±СЉРµРєС‚ СѓРЅРёС‡С‚РѕР¶РµРЅ\n";
     }
 
     sharedSword.reset();
 
     if (std::shared_ptr<Item> locked = weakSword.lock()) {
-        std::cout << "weak_ptr: объект жив, имя = " << locked->GetName() << "\n";
+        std::cout << "weak_ptr: РѕР±СЉРµРєС‚ Р¶РёРІ, РёРјСЏ = " << locked->GetName() << "\n";
     }
     else {
-        std::cout << "weak_ptr: объект уничтожен\n";
+        std::cout << "weak_ptr: РѕР±СЉРµРєС‚ СѓРЅРёС‡С‚РѕР¶РµРЅ\n";
     }
 
     return 0;

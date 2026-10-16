@@ -8,30 +8,30 @@ namespace dnd {
         , m_count(0)
         , m_capacity(5)
     {
-        std::cout << "Èíâåíòàðü ñîçäàí (Êîìïîçèöèÿ)\n";
+        std::cout << "Ð˜Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ ÑÐ¾Ð·Ð´Ð°Ð½ (ÐšÐ¾Ð¼Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ)\n";
     }
 
     Inventory::~Inventory() {
-        std::cout << "Èíâåíòàðü óíè÷òîæåí. Âñå ïðåäìåòû èñ÷åçëè.\n";
+        std::cout << "Ð˜Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½. Ð’ÑÐµ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ñ‹ Ð¸ÑÑ‡ÐµÐ·Ð»Ð¸.\n";
     }
 
     bool Inventory::AddItem(const Item& item) {
         if (m_count >= m_capacity) {
-            std::cout << "Îøèáêà: Èíâåíòàðü ïîëîí! Íåëüçÿ äîáàâèòü " << item.GetName() << "\n";
+            std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð˜Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ Ð¿Ð¾Ð»Ð¾Ð½! ÐÐµÐ»ÑŒÐ·Ñ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ " << item.GetName() << "\n";
             return false;
         }
         m_items[m_count] = item;
         m_count++;
-        std::cout << "Äîáàâëåí ïðåäìåò: " << item.GetName() << "\n";
+        std::cout << "Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚: " << item.GetName() << "\n";
         return true;
     }
 
     void Inventory::ShowItems() const {
         if (m_count == 0) {
-            std::cout << "Èíâåíòàðü ïóñò.\n";
+            std::cout << "Ð˜Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ Ð¿ÑƒÑÑ‚.\n";
             return;
         }
-        std::cout << "Ñîäåðæèìîå:\n";
+        std::cout << "Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ:\n";
         for (int i = 0; i < m_count; ++i) {
             m_items[i].Print();
         }

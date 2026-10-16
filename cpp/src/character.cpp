@@ -6,37 +6,37 @@ namespace dnd {
     Character::Character(std::string_view name, int health)
         : m_name(name), m_health(health), m_maxHealth(health)
     {
-        std::cout << "Ñîçäàí ïåðñîíàæ: " << m_name << " (HP: " << m_health << ")\n";
+        std::cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶: " << m_name << " (HP: " << m_health << ")\n";
     }
 
     Character::~Character() {
-        std::cout << "Ïåðñîíàæ " << m_name << " óíè÷òîæåí.\n";
+        std::cout << "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð¶ " << m_name << " ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½.\n";
     }
 
     void Character::Attack(const Item& weapon) {
         if (weapon.GetType() != Item::Type::eWeapon) {
-            std::cout << "Îøèáêà: " << weapon.GetName() << " íå ÿâëÿåòñÿ îðóæèåì!\n";
+            std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: " << weapon.GetName() << " Ð½Ðµ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð¾Ñ€ÑƒÐ¶Ð¸ÐµÐ¼!\n";
             return;
         }
-        std::cout  << m_name << " àòàêóåò ñ ïîìîùüþ " << weapon.GetName()
-            << " íà " << weapon.GetDamage() << " óðîíà!\n";
+        std::cout  << m_name << " Ð°Ñ‚Ð°ÐºÑƒÐµÑ‚ Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ " << weapon.GetName()
+            << " Ð½Ð° " << weapon.GetDamage() << " ÑƒÑ€Ð¾Ð½Ð°!\n";
     }
 
     void Character::Heal(const Item& potion) {
         if (m_health >= m_maxHealth) {
-            std::cout << "Îøèáêà: Çäîðîâüå óæå ìàêñèìàëüíîå (" << m_maxHealth << "). Çåëüå íå íóæíî.\n";
+            std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð—Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ ÑƒÐ¶Ðµ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ (" << m_maxHealth << "). Ð—ÐµÐ»ÑŒÐµ Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð¾.\n";
             return;
         }
 
         if (potion.GetType() != Item::Type::ePotion) {
-            std::cout << "Îøèáêà: " << potion.GetName() << " íå ÿâëÿåòñÿ çåëüåì!\n";
+            std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: " << potion.GetName() << " Ð½Ðµ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð·ÐµÐ»ÑŒÐµÐ¼!\n";
             return;
         }
 
         m_health += potion.GetHeal();
         if (m_health > m_maxHealth) m_health = m_maxHealth;
-        std::cout << m_name << " âûïèë " << potion.GetName()
-            << ". Òåêóùåå HP: " << m_health << "\n";
+        std::cout << m_name << " Ð²Ñ‹Ð¿Ð¸Ð» " << potion.GetName()
+            << ". Ð¢ÐµÐºÑƒÑ‰ÐµÐµ HP: " << m_health << "\n";
     }
 
     bool Character::PickUpItem(const Item& item) {
@@ -47,7 +47,7 @@ namespace dnd {
     std::string_view Character::GetName() const { return m_name; }
 
     void Character::PrintStatus() const {
-        std::cout << "Ñòàòóñ: " << m_name << " | HP: " << m_health << "/" << m_maxHealth << " \n";
+        std::cout << "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ: " << m_name << " | HP: " << m_health << "/" << m_maxHealth << " \n";
         m_inventory.ShowItems();
     }
 }
